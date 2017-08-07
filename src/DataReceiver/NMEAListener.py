@@ -10,14 +10,21 @@ import time
 print ("Reading NMEA input file sent to stdin...")
 
 i = 0
+validNmea = 0
+allRec = 0
+
 for line in sys.stdin:
-    line = line.lstrip('\\c:').strip()
-    tokens = line.split('\\')
+    cutline = line.lstrip('\\c:').strip()
+    tokens = cutline.split('\\')
     timeTokens = tokens[0].split('*')
 
     # this appears to be a date in millisesonds form
     #ref :  https://www.timecalculator.net/milliseconds-to-date
-    timeinMillis = int(timeTokens[0])
+    try :
+        timeinMillis = int(timeTokens[0])
+    except:
+        print ('problem with parsing time for record ' + cutline)
+        continue
 
     # python 'time' doesn't include support for millis OOTB
     # so I converted it to seconds and saved off the millis. Do we need them?
@@ -26,7 +33,6 @@ for line in sys.stdin:
 
     dateFormatted = time.strftime('%m-%d-%Y', timeObj)
     timeFormatted = time.strftime('%I:%M:%S', timeObj)
-
 
     # This is like 61 of 6D or something...
     someStrangeSixHexTHing = timeTokens[1]
@@ -38,15 +44,19 @@ for line in sys.stdin:
     if not nmeaStr:
         print ('nmeaStr is NULL.   Skipping')
         continue
+    allRec = allRec + 1
     try:
         nmeaObj = pynmea2.parse(nmeaStr)
+        validNmea = validNmea + 1
     except:
         print ('nmeaStr is INVALID.   Skipping')
+
         continue
 
     if (nmeaObj.sentence_type == 'GGA'):
         i = i + 1
         print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
+        #print ('checksum ' + sum(bytearray(timeinMillis)) + ' csum ' + someStrangeSixHexTHing)
         print ('nmea data: ' + str(nmeaObj))
         print ('lat  : ' + nmeaObj.lat)
         print ('long : ' + nmeaObj.lon)
@@ -55,3 +65,5 @@ for line in sys.stdin:
     # just output 5 lines and then stop for now.
     if i > 5 :
         break;
+
+print ('Total counts.  validNmea = ' + str(validNmea) + ' allRec = ' + str(allRec) )
