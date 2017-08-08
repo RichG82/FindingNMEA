@@ -1,4 +1,10 @@
-DROP TABLE IF EXISTS 'gga_data';
+/*
+  To run:
+  mysql -u feeder -p readings < create_tables.sql
+
+*/
+
+DROP TABLE IF EXISTS gga_data;
 
 CREATE TABLE gga_data (
   record_time   DATETIME,
