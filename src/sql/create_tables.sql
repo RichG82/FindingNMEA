@@ -19,6 +19,7 @@ CREATE TABLE gga_data (
   altitude_units  varchar(1),
   geo_sep          varchar(5),
   geo_sep_units    varchar(1)
---  age_gps_data     == ''
-  --ref_station_id   == '0000'
+  /*  age_gps_data     == ''
+     ref_station_id   == '0000'
+     */
 );
