@@ -1,6 +1,7 @@
 import sys
 import pynmea2
 import time
+import NmeaDAO
 
 # gotta install pynmea2 first.
 # Use command: sudo pip install pynmea2
@@ -53,6 +54,10 @@ for line in sys.stdin:
 
         continue
 
+    #  If we get here, the record is VALID
+
+
+
     if (nmeaObj.sentence_type == 'GGA'):
         i = i + 1
         print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
@@ -61,6 +66,7 @@ for line in sys.stdin:
         print ('lat  : ' + nmeaObj.lat)
         print ('long : ' + nmeaObj.lon)
         print ()
+        NmeaDAO.save_nmea_object(nmeaObj)
 
     # just output 5 lines and then stop for now.
     if i > 5 :

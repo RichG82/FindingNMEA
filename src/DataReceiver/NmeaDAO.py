@@ -37,14 +37,37 @@ import MySQLdb
 db = MySQLdb.connect("localhost", "feeder", "password", "readings")
 curs=db.cursor()
 
-try:
-    curs.execute ("""INSERT INTO positions values(40,30,'hello',21.7)""")
-    db.commit()
-    print "Data committed"
+commit_threshold = 100
+commit_rows = 0
 
-except:
-    print "Error: the database is being rolled back"
-    db.rollback()
+def lazy_commit() :
+    global commit_threshold
+    global commit_rows
+    global db
+    commit_rows = commit_rows + 1
+    if (commit_rows >= commit_threshold) :
+        try:
+            db.commit()
+            print ("Data committed")
+            commit_rows = 0;
+        except:
+            print ("Error: the database is being rolled back")
+            db.rollback()
+
+
+def save_nmea_object(nmeaObj) :
+    print ('SAVING nmea data: ' + str(nmeaObj))
+
+# main
+#try:
+#$    curs.execute ("""INSERT INTO positions values(40,30,'hello',21.7)""")
+    # db.commit()
+
+#    print ("Data committed"
+
+#except:
+#    print "Error: the database is being rolled back"
+#    db.rollback()
 
 
 
