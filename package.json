@@ -1,0 +1,19 @@
+{
+  "name": "finding-nmea",
+  "version": "1.0.0",
+  "description": "\"# FindingNMEA\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichG82/FindingNMEA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RichG82/FindingNMEA/issues"
+  },
+  "homepage": "https://github.com/RichG82/FindingNMEA#readme"
+}
