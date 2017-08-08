@@ -37,9 +37,10 @@ import MySQLdb
 db = MySQLdb.connect("localhost", "feeder", "password", "readings")
 curs=db.cursor()
 
-commit_threshold = 100
+commit_threshold = 4
 commit_rows = 0
 
+# only commits every X rows where X is the commit_threshold global
 def lazy_commit() :
     global commit_threshold
     global commit_rows
@@ -55,8 +56,18 @@ def lazy_commit() :
             db.rollback()
 
 
+# calls specific method below according to type and then lazy_commit()
 def save_nmea_object(nmeaObj) :
-    print ('SAVING nmea data: ' + str(nmeaObj))
+    if (nmeaObj.sentence_type == 'GGA'):
+        save_gga(nmeaObj)
+    lazy_commit()
+
+
+
+
+def save_gga(nmeaObj):
+    global curs
+    curs.execute ("""INSERT INTO positions values(40,30,'hello',21.7)""")
 
 # main
 #try:
