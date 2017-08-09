@@ -57,29 +57,24 @@ def lazy_commit() :
 
 
 # calls specific method below according to type and then lazy_commit()
-def save_nmea_object(nmeaObj) :
+def save_nmea_object(record_time, nmeaObj) :
     if (nmeaObj.sentence_type == 'GGA'):
         save_gga(nmeaObj)
+    if (nmeaObj.sentence_type == 'VTG'):
+        save_vtg(nmeaObj)
     lazy_commit()
 
 
-
-
-def save_gga(nmeaObj):
+def save_gga(rec_time, nmeaObj):
     global curs
-    curs.execute ("""INSERT INTO positions values(40,30,'hello',21.7)""")
+    print ("Adding row of GGA data")
+    curs.execute ("""INSERT INTO gga_data(record_time, lat_dir,lon,lon_dir, gps_qual,num_sats, horizontal_dil, altitude, altitude_units, geo_sep, geo_sep_units) values (rec_time, nmeaObj.lat_dir,nmeaObj.lon,nmeaObj.lon_dir, nmeaObj.gps_qual, meaObj.num_sats, meaObj.horizontal_dil, meaObj.altitude, meaObj.altitude_units, meaObj.geo_sep, meaObj.geo_sep_units)""")
 
-# main
-#try:
-#$    curs.execute ("""INSERT INTO positions values(40,30,'hello',21.7)""")
-    # db.commit()
-
-#    print ("Data committed"
-
-#except:
-#    print "Error: the database is being rolled back"
-#    db.rollback()
-
+def save_vtg(rec_time, nmeaObj):
+    global curs
+    print ("Adding row of VTG data")
+    curs.execute ("""INSERT INTO vtg_data(record_time, true_track, true_track_sym, mag_track, mag_track_sym, spd_over_grnd_kts, spd_over_grnd_kts_sym, spd_over_grnd_kmph, spd_over_grnd_kmph_sym)
+    values (rec_time, meaObj.true_track, meaObj.true_track_sym, meaObj.mag_track, meaObj.mag_track_sym, meaObj.spd_over_grnd_kts, meaObj.spd_over_grnd_kts_sym, meaObj.spd_over_grnd_kmph, meaObj.spd_over_grnd_kmph_sym)
 
 
 #  https://stackoverflow.com/questions/1448429/how-to-install-mysqldb-python-data-access-library-to-mysql-on-mac-os-x#1448476

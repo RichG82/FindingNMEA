@@ -58,18 +58,15 @@ for line in sys.stdin:
 
 
 
-    if (nmeaObj.sentence_type == 'GGA'):
-        i = i + 1
-        print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
+    i = i + 1
+#    print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
         #print ('checksum ' + sum(bytearray(timeinMillis)) + ' csum ' + someStrangeSixHexTHing)
-        print ('nmea data: ' + str(nmeaObj))
-        print ('lat  : ' + nmeaObj.lat)
-        print ('long : ' + nmeaObj.lon)
-        print ()
-        NmeaDAO.save_nmea_object(nmeaObj)
+#    print ('nmea data: ' + str(nmeaObj))
+
+    NmeaDAO.save_nmea_object(timeObj, nmeaObj)
 
     # just output 5 lines and then stop for now.
-    if i > 5 :
-        break;
+#    if i > 5 :
+#        break;
 
 print ('Total counts.  validNmea = ' + str(validNmea) + ' allRec = ' + str(allRec) )
