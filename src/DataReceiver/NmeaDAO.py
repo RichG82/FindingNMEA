@@ -26,6 +26,7 @@
 # mysql> quit
 
 # now login as that user    :   mysql -u feeder -p
+# password is 'password'
 # mysql> USE readings;
 # mysql> CREATE TABLE positions (lat NUMERIC, lon NUMERIC, formattedtime TEXT, timeasmillis NUMERIC);
 
@@ -63,7 +64,6 @@ def save_nmea_object(rec_time, nmeaObj) :
         save_gga(rec_time, nmeaObj)
     if (nmeaObj.sentence_type == 'VTG'):
         save_vtg(rec_time, nmeaObj)
-    lazy_commit()
 
 
 def save_gga(rec_time, nmeaObj):
@@ -84,7 +84,9 @@ def save_gga(rec_time, nmeaObj):
     insertString += "'" + str(nmeaObj.geo_sep_units) + "'"
     insertString += ')'
     print ('insertString - ' + insertString)
-    curs.execute (insertString)
+    curs.execute(insertString)
+    lazy_commit()
+
 
 def save_vtg(rec_time, nmeaObj):
     global curs
