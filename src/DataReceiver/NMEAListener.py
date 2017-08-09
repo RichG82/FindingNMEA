@@ -7,6 +7,7 @@ import NmeaDAO
 # Use command: sudo pip install pynmea2
 # OR  python3 -m pip install pynmea2
 # usage python3 NMEAListener.py < ../../dat/datalog3
+# or python NMEAListener.py < ../../dat/datalog3
 
 print ("Reading NMEA input file sent to stdin...")
 
