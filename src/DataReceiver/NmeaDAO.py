@@ -70,17 +70,17 @@ def save_gga(rec_time, nmeaObj):
     print ("Adding row of GGA data")
     insertString = """INSERT INTO gga_data(record_time, lat_dir,lon,lon_dir, gps_qual,num_sats, horizontal_dil, altitude, altitude_units, geo_sep, geo_sep_units) values ("""
     insertString += str(rec_time) + ','
-    insertString += nmeaObj.lat + ','
-    insertString += nmeaObj.lat_dir + ','
-    insertString += nmeaObj.lon + ','
-    insertString += nmeaObj.lon_dir + ','
-    insertString += nmeaObj.gps_qual + ','
-    insertString += nmeaObj.num_sats + ','
-    insertString += nmeaObj.horizontal_dil + ','
-    insertString += nmeaObj.altitude + ',';
-    insertString += nmeaObj.altitude_units + ','
-    insertString += nmeaObj.geo_sep + ','
-    insertString += nmeaObj.geo_sep_units
+    insertString += str(nmeaObj.lat) + ','
+    insertString += str(nmeaObj.lat_dir) + ','
+    insertString += str(nmeaObj.lon) + ','
+    insertString += str(nmeaObj.lon_dir) + ','
+    insertString += str(nmeaObj.gps_qual) + ','
+    insertString += str(nmeaObj.num_sats) + ','
+    insertString += str(nmeaObj.horizontal_dil) + ','
+    insertString += str(nmeaObj.altitude) + ',';
+    insertString += str(nmeaObj.altitude_units) + ','
+    insertString += str(nmeaObj.geo_sep) + ','
+    insertString += str(nmeaObj.geo_sep_units)
     insertString += ')'
     print ('insertString - ' + insertString)
     curs.execute (insertString)
