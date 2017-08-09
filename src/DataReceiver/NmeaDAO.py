@@ -69,7 +69,7 @@ def save_gga(rec_time, nmeaObj):
     global curs
     print ("Adding row of GGA data")
     insertString = """INSERT INTO gga_data(record_time, lat_dir,lon,lon_dir, gps_qual,num_sats, horizontal_dil, altitude, altitude_units, geo_sep, geo_sep_units) values ("""
-    insertString += rec_time + ','
+    insertString += str(rec_time) + ','
     insertString += nmeaObj.lat + ','
     insertString += nmeaObj.lat_dir + ','
     insertString += nmeaObj.lon + ','
