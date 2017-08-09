@@ -73,8 +73,7 @@ def save_gga(rec_time, nmeaObj):
 def save_vtg(rec_time, nmeaObj):
     global curs
     print ("Adding row of VTG data")
-    curs.execute ("""INSERT INTO vtg_data(record_time, true_track, true_track_sym, mag_track, mag_track_sym, spd_over_grnd_kts, spd_over_grnd_kts_sym, spd_over_grnd_kmph, spd_over_grnd_kmph_sym)
-    values (rec_time, meaObj.true_track, meaObj.true_track_sym, meaObj.mag_track, meaObj.mag_track_sym, meaObj.spd_over_grnd_kts, meaObj.spd_over_grnd_kts_sym, meaObj.spd_over_grnd_kmph, meaObj.spd_over_grnd_kmph_sym)
+    curs.execute ("""INSERT INTO vtg_data(record_time, true_track, true_track_sym, mag_track, mag_track_sym, spd_over_grnd_kts, spd_over_grnd_kts_sym, spd_over_grnd_kmph, spd_over_grnd_kmph_sym) values (rec_time, meaObj.true_track, meaObj.true_track_sym, meaObj.mag_track, meaObj.mag_track_sym, meaObj.spd_over_grnd_kts, meaObj.spd_over_grnd_kts_sym, meaObj.spd_over_grnd_kmph, meaObj.spd_over_grnd_kmph_sym)""")
 
 
 #  https://stackoverflow.com/questions/1448429/how-to-install-mysqldb-python-data-access-library-to-mysql-on-mac-os-x#1448476
