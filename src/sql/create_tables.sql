@@ -23,3 +23,19 @@ CREATE TABLE gga_data (
      ref_station_id   == '0000'
      */
 );
+
+
+DROP TABLE IF EXISTS vtg_data;
+
+CREATE TABLE vtg_data (
+  record_time     DATETIME,
+  true_track      DECIMAL(6,1),
+  true_track_sym  varchar(1),
+  mag_track       DECIMAL(6,1),
+  mag_track_sym   varchar(1),
+  spd_over_grnd_kts DECIMAL(6,1),
+  spd_over_grnd_kts_sym varchar(1),
+  spd_over_grnd_kmph DECIMAL(6,1),
+  spd_over_grnd_kmph_sym varchar(1)
+);
+        
