@@ -33,6 +33,8 @@
 #!/usr/bin/env python
 
 import MySQLdb
+import time
+
 
 db = MySQLdb.connect("localhost", "feeder", "password", "readings")
 curs=db.cursor()
