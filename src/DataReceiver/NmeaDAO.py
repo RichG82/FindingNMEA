@@ -57,11 +57,11 @@ def lazy_commit() :
 
 
 # calls specific method below according to type and then lazy_commit()
-def save_nmea_object(record_time, nmeaObj) :
+def save_nmea_object(rec_time, nmeaObj) :
     if (nmeaObj.sentence_type == 'GGA'):
-        save_gga(nmeaObj)
+        save_gga(rec_time, nmeaObj)
     if (nmeaObj.sentence_type == 'VTG'):
-        save_vtg(nmeaObj)
+        save_vtg(rec_time, nmeaObj)
     lazy_commit()
 
 
