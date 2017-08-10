@@ -19,22 +19,21 @@ for line in sys.stdin:
     tokens = cutline.split('\\')
     timeTokens = tokens[0].split('*')
 
-    # this appears to be a date in millisesonds form
-    #ref :  https://www.timecalculator.net/milliseconds-to-date
+    # format time
     try :
         timeinMillis = int(timeTokens[0])
+        # this appears to be a date in millisesonds form
+        #ref :  https://www.timecalculator.net/milliseconds-to-date
+        # python 'time' doesn't include support for millis OOTB
+        # so I converted it to seconds and saved off the millis. Do we need them?
+        print('timeinmillis' + str(timeinMillis))
+        timeObj = time.localtime(timeinMillis/ 1000)
+        millisOnly = timeinMillis % 1000
+        dateFormatted = time.strftime('%m-%d-%Y', timeObj)
+        timeFormatted = time.strftime('%I:%M:%S', timeObj)
     except:
         print ('problem with parsing time for record ' + cutline)
         continue
-
-    # python 'time' doesn't include support for millis OOTB
-    # so I converted it to seconds and saved off the millis. Do we need them?
-    print('timeinmillis' + str(timeinMillis))
-    timeObj = time.localtime(timeinMillis/ 1000)
-    millisOnly = timeinMillis % 1000
-
-    dateFormatted = time.strftime('%m-%d-%Y', timeObj)
-    timeFormatted = time.strftime('%I:%M:%S', timeObj)
 
     # This is like 61 of 6D or something...
     someStrangeSixHexTHing = timeTokens[1]
