@@ -25,10 +25,9 @@ for line in sys.stdin:
         # this appears to be a date in millisesonds form
         #ref :  https://www.timecalculator.net/milliseconds-to-date
         # python 'time' doesn't include support for millis OOTB
-        # so I converted it to seconds and saved off the millis. Do we need them?
-        print('timeinmillis' + str(timeinMillis))
+        # so the millis are converted to seconds and truncated the millis.
         timeObj = time.localtime(timeinMillis/ 1000)
-        millisOnly = timeinMillis % 1000
+        millisOnly = timeinMillis % 1000 # not used.  Needed?
         dateFormatted = time.strftime('%m-%d-%Y', timeObj)
         timeFormatted = time.strftime('%I:%M:%S', timeObj)
     except:
@@ -54,16 +53,12 @@ for line in sys.stdin:
 
         continue
 
+    #    print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
+    #   print ('checksum ' + sum(bytearray(timeinMillis)) + ' csum ' + someStrangeSixHexTHing)
+    #    print ('nmea data: ' + str(nmeaObj))
+
     #  If we get here, the record is VALID
-
-#    print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
-        #print ('checksum ' + sum(bytearray(timeinMillis)) + ' csum ' + someStrangeSixHexTHing)
-#    print ('nmea data: ' + str(nmeaObj))
-
     NmeaDAO.save_nmea_object(timeObj, nmeaObj)
-
-    # just output 5 lines and then stop for now.
-#    if i > 5 :
-#        break;
+# END LOOP
 
 print ('Total counts.  validNmea = ' + str(validNmea) + ' allRec = ' + str(allRec) )

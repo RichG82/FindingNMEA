@@ -39,7 +39,7 @@ import time
 db = MySQLdb.connect("localhost", "feeder", "password", "readings")
 curs=db.cursor()
 
-commit_threshold = 4
+commit_threshold = 20
 commit_rows = 0
 
 # only commits every X rows where X is the commit_threshold global
@@ -86,7 +86,6 @@ def save_gga(rec_time, nmeaObj):
     print ('insertString - ' + insertString)
     curs.execute(insertString)
     lazy_commit()
-
 
 def save_vtg(rec_time, nmeaObj):
     global curs
