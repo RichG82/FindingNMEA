@@ -68,7 +68,7 @@ def save_nmea_object(rec_time, nmeaObj) :
 
 def save_gga(rec_time, nmeaObj):
     global curs
-    print ("Adding row of GGA data")
+    #print ("Adding row of GGA data")
     insertString = """INSERT INTO gga_data(lat,lat_dir,lon,lon_dir, gps_qual,num_sats, horizontal_dil, altitude, altitude_units, geo_sep, geo_sep_units) values ("""
 #    insertString += str(rec_time) + ','
     insertString += str(nmeaObj.lat) + ','
@@ -83,13 +83,13 @@ def save_gga(rec_time, nmeaObj):
     insertString += "'" + str(nmeaObj.geo_sep) + "'" + ','
     insertString += "'" + str(nmeaObj.geo_sep_units) + "'"
     insertString += ')'
-    print ('insertString - ' + insertString)
+    # print ('insertString - ' + insertString)
     curs.execute(insertString)
     lazy_commit()
 
 def save_vtg(rec_time, nmeaObj):
     global curs
-    print ("Adding row of VTG data")
+    # print ("Adding row of VTG data")
 #    curs.execute ("""INSERT INTO vtg_data(record_time, true_track, true_track_sym, mag_track, mag_track_sym, spd_over_grnd_kts, spd_over_grnd_kts_sym, spd_over_grnd_kmph, spd_over_grnd_kmph_sym) values (rec_time, meaObj.true_track, meaObj.true_track_sym, meaObj.mag_track, meaObj.mag_track_sym, meaObj.spd_over_grnd_kts, meaObj.spd_over_grnd_kts_sym, meaObj.spd_over_grnd_kmph, meaObj.spd_over_grnd_kmph_sym)""")
 
 
