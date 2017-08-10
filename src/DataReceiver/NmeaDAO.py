@@ -66,7 +66,7 @@ def save_nmea_object(rec_time, nmeaObj) :
         if (nmeaObj.sentence_type == 'VTG'):
             save_vtg(rec_time, nmeaObj)
     except:
-        print ("Error with cursor: continuing"...)
+        print ("Error with cursor: continuing...")
 
 def save_gga(rec_time, nmeaObj):
     global curs
