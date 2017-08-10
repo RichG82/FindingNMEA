@@ -54,17 +54,19 @@ def lazy_commit() :
             print ("Data committed")
             commit_rows = 0;
         except:
-            print ("Error: the database is being rolled back")
+            print ("ERROR: in committing batch.  Data batch is lost and database is being rolled back for next set.")
             db.rollback()
 
 
 # calls specific method below according to type and then lazy_commit()
 def save_nmea_object(rec_time, nmeaObj) :
-    if (nmeaObj.sentence_type == 'GGA'):
-        save_gga(rec_time, nmeaObj)
-    if (nmeaObj.sentence_type == 'VTG'):
-        save_vtg(rec_time, nmeaObj)
-
+    try:
+        if (nmeaObj.sentence_type == 'GGA'):
+            save_gga(rec_time, nmeaObj)
+        if (nmeaObj.sentence_type == 'VTG'):
+            save_vtg(rec_time, nmeaObj)
+    except:
+        print ("Error with cursor: continuing"...)
 
 def save_gga(rec_time, nmeaObj):
     global curs
