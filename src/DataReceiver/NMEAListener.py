@@ -11,7 +11,6 @@ import NmeaDAO
 
 print ("Reading NMEA input file sent to stdin...")
 
-i = 0
 validNmea = 0
 allRec = 0
 
@@ -30,6 +29,7 @@ for line in sys.stdin:
 
     # python 'time' doesn't include support for millis OOTB
     # so I converted it to seconds and saved off the millis. Do we need them?
+    print('timeinmillis' + str(timeinMillis))
     timeObj = time.localtime(timeinMillis/ 1000)
     millisOnly = timeinMillis % 1000
 
@@ -57,9 +57,6 @@ for line in sys.stdin:
 
     #  If we get here, the record is VALID
 
-
-
-    i = i + 1
 #    print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
         #print ('checksum ' + sum(bytearray(timeinMillis)) + ' csum ' + someStrangeSixHexTHing)
 #    print ('nmea data: ' + str(nmeaObj))
