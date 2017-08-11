@@ -58,4 +58,4 @@ for line in sys.stdin:
 # END LOOP
 
 print ('Total counts.  validNmea = ' + str(validNmea) + ' allRec = ' + str(allRec) + ' valid rate = ' + str(validNmea/allRec))
-print ('Start time = ' + startTime + ' End Time = ' + time.localtime())
+print ('Start time = ' + time.strftime('%I:%M:%S',startTime) + ' End Time = ' + time.strftime('%I:%M:%S', time.localtime()) )
