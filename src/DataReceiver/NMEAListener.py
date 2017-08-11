@@ -13,6 +13,7 @@ print ("Reading NMEA input file sent to stdin...")
 
 validNmea = 0
 allRec = 0
+startTime = time.localtime()
 
 for line in sys.stdin:
     cutline = line.lstrip('\\c:').strip()
@@ -49,16 +50,12 @@ for line in sys.stdin:
         nmeaObj = pynmea2.parse(nmeaStr)
         validNmea = validNmea + 1
     except:
-        print ('nmeaStr is INVALID.   Skipping')
-
+        # print ('NMEA Data cannot be parsed.   Skipping')
         continue
-
-    #    print ('record from timstamp ' + dateFormatted + ' ' + timeFormatted + ':' + str(millisOnly))
-    #   print ('checksum ' + sum(bytearray(timeinMillis)) + ' csum ' + someStrangeSixHexTHing)
-    #    print ('nmea data: ' + str(nmeaObj))
 
     #  If we get here, the record is VALID
     NmeaDAO.save_nmea_object(timeObj, nmeaObj)
 # END LOOP
 
-print ('Total counts.  validNmea = ' + str(validNmea) + ' allRec = ' + str(allRec) )
+print ('Total counts.  validNmea = ' + str(validNmea) + ' allRec = ' + str(allRec) + ' valid rate = ' + str(validNmea/allRec))
+print ('Start time = ' + startTime + ' End Time = ' + time.localtime())

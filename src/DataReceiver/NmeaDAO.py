@@ -39,7 +39,7 @@ import time
 db = MySQLdb.connect("localhost", "feeder", "password", "readings")
 curs=db.cursor()
 
-commit_threshold = 20
+commit_threshold = 100
 commit_rows = 0
 
 # only commits every X rows where X is the commit_threshold global
