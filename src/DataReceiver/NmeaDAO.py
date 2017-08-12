@@ -85,7 +85,7 @@ def save_gga(rec_time, nmeaObj):
     insertString += "'" + str(nmeaObj.geo_sep) + "'" + ','
     insertString += "'" + str(nmeaObj.geo_sep_units) + "'"
     insertString += ')'
-    print ('insertString - ' + insertString)
+    #print ('insertString - ' + insertString)
     curs.execute(insertString)
     lazy_commit()
 
