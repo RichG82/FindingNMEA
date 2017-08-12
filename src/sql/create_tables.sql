@@ -1,6 +1,6 @@
 /*
   To run:
-  mysql -u feeder -p readings < create_tables.sql
+mysql -u feeder -p readings < create_tables.sql
 
 */
 
@@ -38,4 +38,3 @@ CREATE TABLE vtg_data (
   spd_over_grnd_kmph DECIMAL(6,1),
   spd_over_grnd_kmph_sym varchar(1)
 );
-        
