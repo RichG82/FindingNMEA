@@ -27,10 +27,10 @@ for line in sys.stdin:
         #ref :  https://www.timecalculator.net/milliseconds-to-date
         # python 'time' doesn't include support for millis OOTB
         # so the millis are converted to seconds and truncated the millis.
-        timeObj = time.localtime(timeinMillis/ 1000)
-        millisOnly = timeinMillis % 1000 # not used.  Needed?
-        dateFormatted = time.strftime('%m-%d-%Y', timeObj)
-        timeFormatted = time.strftime('%I:%M:%S', timeObj)
+        timeObj = time.localtime(timeinMillis / 1000)
+    #    millisOnly = timeinMillis % 1000 # not used.  Needed?
+    #    dateFormatted = time.strftime('%m-%d-%Y', timeObj)
+    #    timeFormatted = time.strftime('%I:%M:%S', timeObj)
     except:
         print ('problem with parsing time for record ' + cutline)
         continue
