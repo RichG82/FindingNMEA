@@ -37,22 +37,6 @@ RUN git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 EXPOSE 3306
 EXPOSE 80
 
-#CMD ["service", "apache2", "start"]
-#CMD ["service", "mysql", "start"]
-
 COPY ./dockerinit.sh ./dockerinit.sh
-
-
-#CMD chmod +x /finding-nmea/dockerinit.sh
-#CMD ./finding-nmea/dockerinit.sh
-
-
-#RUN service apache2 start
-#RUN service mysql start
-
-
-CMD cd /finding-nmea
-CMD ["echo", "hello world"]
-CMD /dockerinit.sh
 
 ENTRYPOINT /dockerinit.sh && /bin/bash

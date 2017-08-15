@@ -4,6 +4,8 @@ mysql -u feeder -p readings < create_tables.sql
 
 */
 
+USE readings;
+
 DROP TABLE IF EXISTS gga_data;
 
 CREATE TABLE gga_data (
