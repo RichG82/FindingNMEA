@@ -6,6 +6,8 @@ I dont know markdown... so, sorry in advance.
 ### Source Docker Location
 https://hub.docker.com/r/linode/lamp/
 
+This was installed with a basic LAMP stack.  Apache is not yet configured.
+
 MySQL Password: Admin2015
 
 ### 1.  Clone the repository
@@ -30,6 +32,10 @@ List Containers: ```docker ps```
 Kill Container: ```docker kill <containerid>```
   
 Attach to Container (like SSH): ```docker attach <containerid>```
+
+### 5. Misc Notes About the NMEA Image
+- the /finding-nmea directory is created as part of the image.  This is where the main application will live
+- Apache is not yet configured
 
 
 
