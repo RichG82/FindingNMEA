@@ -26,6 +26,7 @@
 # mysql> quit
 
 # now login as that user    :   mysql -u feeder -p
+# password is 'password'
 # mysql> USE readings;
 # mysql> CREATE TABLE positions (lat NUMERIC, lon NUMERIC, formattedtime TEXT, timeasmillis NUMERIC);
 
@@ -33,19 +34,65 @@
 #!/usr/bin/env python
 
 import MySQLdb
+import time
 
 db = MySQLdb.connect("localhost", "feeder", "password", "readings")
-curs=db.cursor()
+curs = db.cursor()
 
-try:
-    curs.execute ("""INSERT INTO positions values(40,30,'hello',21.7)""")
-    db.commit()
-    print "Data committed"
+commit_threshold = 500
+commit_rows = 0
 
-except:
-    print "Error: the database is being rolled back"
-    db.rollback()
+# only commits every X rows where X is the commit_threshold global
+def lazy_commit() :
+    global commit_threshold
+    global commit_rows
+    global db
+    commit_rows = commit_rows + 1
+    if (commit_rows >= commit_threshold) :
+        try:
+            db.commit()
+            print ("Batch committed. " + str(commit_rows) + " records saved to DB.")
+            commit_rows = 0;
+        except:
+            print ("ERROR: in committing batch.  Data batch is lost and database is being rolled back for next set.")
+            db.rollback()
 
+
+# calls specific method below according to type and then lazy_commit()
+def save_nmea_object(rec_time, nmeaObj) :
+    try:
+        if (nmeaObj.sentence_type == 'GGA'):
+            save_gga(rec_time, nmeaObj)
+        if (nmeaObj.sentence_type == 'VTG'):
+            save_vtg(rec_time, nmeaObj)
+    except:
+        print ("Error with cursor: continuing...")
+
+def save_gga(rec_time, nmeaObj):
+    global curs
+    #print ("Adding row of GGA data")
+    insertString = """INSERT INTO gga_data(record_time, lat, lat_dir, lon, lon_dir, gps_qual, num_sats, horizontal_dil, altitude, altitude_units, geo_sep, geo_sep_units) values ("""
+    insertString += "'" + time.strftime('%Y-%m-%d %I:%M:%S' + "'", rec_time) + ','
+    insertString += str(nmeaObj.lat) + ','
+    insertString += "'" + str(nmeaObj.lat_dir) + "'" + ','
+    insertString += str(nmeaObj.lon) + ','
+    insertString += "'" + str(nmeaObj.lon_dir) + "'" + ','
+    insertString += str(nmeaObj.gps_qual) + ','
+    insertString += "'" + str(nmeaObj.num_sats) + "'" + ','
+    insertString += "'" + str(nmeaObj.horizontal_dil) + "'" + ','
+    insertString += str(nmeaObj.altitude) + ',';
+    insertString += "'" + str(nmeaObj.altitude_units) + "'" + ','
+    insertString += "'" + str(nmeaObj.geo_sep) + "'" + ','
+    insertString += "'" + str(nmeaObj.geo_sep_units) + "'"
+    insertString += ')'
+    #print ('insertString - ' + insertString)
+    curs.execute(insertString)
+    lazy_commit()
+
+def save_vtg(rec_time, nmeaObj):
+    global curs
+    # print ("Adding row of VTG data")
+#    curs.execute ("""INSERT INTO vtg_data(record_time, true_track, true_track_sym, mag_track, mag_track_sym, spd_over_grnd_kts, spd_over_grnd_kts_sym, spd_over_grnd_kmph, spd_over_grnd_kmph_sym) values (rec_time, meaObj.true_track, meaObj.true_track_sym, meaObj.mag_track, meaObj.mag_track_sym, meaObj.spd_over_grnd_kts, meaObj.spd_over_grnd_kts_sym, meaObj.spd_over_grnd_kmph, meaObj.spd_over_grnd_kmph_sym)""")
 
 
 #  https://stackoverflow.com/questions/1448429/how-to-install-mysqldb-python-data-access-library-to-mysql-on-mac-os-x#1448476
