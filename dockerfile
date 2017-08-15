@@ -28,7 +28,7 @@ RUN apt-get install -qqy x11-apps
 RUN apt-get install -y python3-pip
 RUN python3 -m pip install pynmea2
 
-RUN mkdir nmea-app
+#RUN mkdir nmea-app
 RUN git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 
 #ENV DISPLAY :0
