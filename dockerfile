@@ -12,6 +12,8 @@ FROM linode/lamp
 ## connect to mysql
 ## mysql -u root -pAdmin2015
 
+# to be able to ping your container
+# docker run --rm -ti --privileged --network=none --pid=host justincormack/nsenter1 bin/sh -c "iptables -A FORWARD -j ACCEPT"
 #-------------------------------------------------------------------
 #RUN apt-get install dmsetup && dmsetup mknodes
 
@@ -26,10 +28,15 @@ RUN apt-get install -qqy x11-apps
 
 # install pip - python package manager
 RUN apt-get install -y python3-pip
+RUN apt-get install -y python-mysqldb
+
+#RUN apt-get install python-dev libmysqlclient-dev
+#RUN apt-get install python3-dev
+
+#RUN python3 -m pip install mysqlclient
 RUN python3 -m pip install pynmea2
 
-#RUN mkdir nmea-app
-RUN git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
+#RUN git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 
 #ENV DISPLAY :0
 #CMD xeyes
@@ -38,5 +45,6 @@ EXPOSE 3306
 EXPOSE 80
 
 COPY ./dockerinit.sh ./dockerinit.sh
+COPY ./nmea.www.conf /etc/apache2/sites-available
 
 ENTRYPOINT /dockerinit.sh && /bin/bash

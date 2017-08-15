@@ -15,7 +15,10 @@ mysql -u root -pAdmin2015 < /finding-nmea/src/sql/create_tables.sql
 
 echo "***********************************"
 echo "      Database/Tables Created"
+echo "                                                  "
+echo "To Connect:      mysql -u root -pAdmin2015       "
 echo "***********************************"
+
 
 # mysql> CREATE DATABASE readings;
 # mysql> USE readings;
