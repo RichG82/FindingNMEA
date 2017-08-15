@@ -9,8 +9,7 @@ https://hub.docker.com/r/linode/lamp/
 MySQL Password: Admin2015
 
 ### 1.  Clone the repository
-git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
-
+```git clone https://github.com/RichG82/FindingNMEA.git finding-nmea```
 ### 2.  Install Docker
 https://docs.docker.com/engine/installation/
 
@@ -19,18 +18,18 @@ https://docs.docker.com/engine/installation/
 
 This will create a docker image and put it into the images repository.  To view all installed docker images, type:
 
-docker images
+```docker images```
 
 ### 4. Start the Docker Image
-docker run -p 8080:80 -t -i nmea /bin/bash
+```docker run -p 8080:80 -t -i nmea /bin/bash```
 
 This will spin up a new instance of a docker image and leave the shell open connected to the container.  Here are some common container commands:
 
-List Containers: docker ps
+List Containers: ```docker ps```
 
-Kill Container: docker kill <containerid>
+Kill Container: ```docker kill <containerid>```
   
-Attach to Container (like SSH): docker attach <containerid>
+Attach to Container (like SSH): ```docker attach <containerid>```
 
 
 
