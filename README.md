@@ -15,12 +15,22 @@ git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 https://docs.docker.com/engine/installation/
 
 ### 3.  Create the Docker Image
-docker build -t nmea .
+```docker build -t nmea .```
+
+This will create a docker image and put it into the images repository.  To view all installed docker images, type:
+
+docker images
 
 ### 4. Start the Docker Image
 docker run -p 8080:80 -t -i nmea /bin/bash
 
-(this will leave the bash shell open for you at the command prompt. SCORE!)
+This will spin up a new instance of a docker image and leave the shell open connected to the container.  Here are some common container commands:
+
+List Containers: docker ps
+
+Kill Container: docker kill <containerid>
+  
+Attach to Container (like SSH): docker attach <containerid>
 
 
 
