@@ -1,8 +1,21 @@
 
+# create placeholders where logs will live
+mkdir /var/www/finding-nmea.local
+mkdir /var/www/finding-nmea.local/log
+mkdir /var/www/finding-nmea.local/public_html
+
+rm /etc/apache2/sites-available/example.com.conf
+rm /etc/apache2/sites-enabled/example.com.conf
+
+echo "***********************************"
+echo "       Cloning Repository          "
+echo "***********************************"
+
+
 git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 
-service apache2 start
 
+service apache2 start
 service mysql start 
 
 echo "***********************************"
@@ -18,6 +31,9 @@ echo "      Database/Tables Created"
 echo "                                                  "
 echo "To Connect:      mysql -u root -pAdmin2015       "
 echo "***********************************"
+
+
+
 
 
 # mysql> CREATE DATABASE readings;

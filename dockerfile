@@ -25,26 +25,30 @@ RUN apt-get install -y git
 
 # install x11 apps, so we can VLC into our machine (at some point)
 RUN apt-get install -qqy x11-apps
+#ENV DISPLAY :0
+#CMD xeyes
+
 
 # install pip - python package manager
 RUN apt-get install -y python3-pip
-RUN apt-get install -y python-mysqldb
-
-#RUN apt-get install python-dev libmysqlclient-dev
-#RUN apt-get install python3-dev
-
-#RUN python3 -m pip install mysqlclient
 RUN python3 -m pip install pynmea2
 
-#RUN git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
+#RUN apt-get install -y python-mysqldb
+#RUN apt-get install python-dev libmysqlclient-dev
+#RUN apt-get install python3-dev
+#RUN python3 -m pip install mysqlclient
 
-#ENV DISPLAY :0
-#CMD xeyes
 
 EXPOSE 3306
 EXPOSE 80
 
 COPY ./dockerinit.sh ./dockerinit.sh
 COPY ./nmea.www.conf /etc/apache2/sites-available
+COPY ./nmea.www.conf /etc/apache2/sites-enabled
+
+COPY ./src/html /var/www/finding-nmea.local/public_html/html
+COPY ./src/css /var/www/finding-nmea.local/public_html/css
+COPY ./src/js /var/www/finding-nmea.local/public_html/js
+
 
 ENTRYPOINT /dockerinit.sh && /bin/bash
