@@ -1,9 +1,14 @@
+        .main-panel {
+            border:1px solid black;
+            height:100vh;
+        }
 
+        .side-top-right,.side-middle-right,.side-bottom-right {
+            border:1px solid black;
+            height:33.3vh;
+        }        
 
-.main-panel {
-    border:1px solid black;
-}
-
-.side-top-right,.side-middle-right,.side-bottom-right {
-    border:1px solid black;
-}
+        .metric-value {
+            text-align:center;
+            font-size:50pt;
+        }

@@ -28,7 +28,6 @@ RUN apt-get install -qqy x11-apps
 #ENV DISPLAY :0
 #CMD xeyes
 
-
 # install pip - python package manager
 RUN apt-get install -y python3-pip
 RUN python3 -m pip install pynmea2
@@ -46,7 +45,8 @@ COPY ./dockerinit.sh ./dockerinit.sh
 COPY ./nmea.www.conf /etc/apache2/sites-available
 COPY ./nmea.www.conf /etc/apache2/sites-enabled
 
-COPY ./src/html /var/www/finding-nmea.local/public_html/html
+COPY ./bower_components /var/www/finding-nmea.local/public_html/bower_components
+COPY ./src/html /var/www/finding-nmea.local/public_html
 COPY ./src/css /var/www/finding-nmea.local/public_html/css
 COPY ./src/js /var/www/finding-nmea.local/public_html/js
 
