@@ -4,6 +4,7 @@ mkdir /var/www/finding-nmea.local
 mkdir /var/www/finding-nmea.local/log
 mkdir /var/www/finding-nmea.local/public_html
 
+# remove example files from the apache config
 rm /etc/apache2/sites-available/example.com.conf
 rm /etc/apache2/sites-enabled/example.com.conf
 
@@ -12,7 +13,7 @@ echo "       Cloning Repository          "
 echo "***********************************"
 
 
-# git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
+git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 
 
 service apache2 start
@@ -33,17 +34,18 @@ echo "To Connect:      mysql -u root -pAdmin2015       "
 echo "***********************************"
 
 
+apt-get install -y python
+apt-get install -y python-pip
+pip install pynmea2
+apt-get install python-mysqldb
+
+#apt-get install -y python3-pip
+#apt-get install python-pip
+#apt-get install python-pip python-dev build-essential 
+
+#python3 -m pip install pynmea2
+#python -m pip install pynmea2
+#pip install -y pynmea2
+#pip install pynmea2
 
 
-
-# mysql> CREATE DATABASE readings;
-# mysql> USE readings;
-# mysql> CREATE USER 'feeder'@'localhost' IDENTIFIED BY 'password';
-# mysql> GRANT ALL PRIVILEGES ON readings.* TO 'feeder'@'localhost';
-# mysql> FLUSH PRIVILEGES;
-# mysql> quit
-
-# now login as that user    :   mysql -u feeder -p
-# password is 'password'
-# mysql> USE readings;
-# mysql> CREATE TABLE positions (lat NUMERIC, lon NUMERIC, formattedtime TEXT, timeasmillis NUMERIC);
