@@ -34,10 +34,10 @@ echo "To Connect:      mysql -u root -pAdmin2015       "
 echo "***********************************"
 
 
-apt-get install -y python
-apt-get install -y python-pip
-pip install pynmea2
-apt-get install python-mysqldb
+#apt-get install -y python
+#apt-get install -y python-pip
+#pip install pynmea2
+#apt-get install python-mysqldb
 
 #apt-get install -y python3-pip
 #apt-get install python-pip
