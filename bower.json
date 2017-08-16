@@ -19,6 +19,6 @@
     "jquery": "^3.2.1",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
-    "chart.js": "^2.6.0"
+    "plotlyjs": "plotly#^1.18.1"
   }
 }
