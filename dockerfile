@@ -37,6 +37,7 @@ RUN python3 -m pip install pynmea2
 #RUN apt-get install python3-dev
 #RUN python3 -m pip install mysqlclient
 
+CMD git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 
 EXPOSE 3306
 EXPOSE 80

@@ -16,7 +16,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 main-panel">
-            
+            <canvas id="myChart" width="400" height="400"></canvas>
 		</div>
 		<div class="col-md-4">
 			<div class="row">
@@ -75,12 +75,35 @@
 	</div>
 </div>
 
-    
-
-
-
     <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/chart.js/dist/Chart.bundle.min.js"></script>
+
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Red"],
+        datasets: [{
+            label: '# of Votes',
+            data: [1,2,3,4,5, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+            borderColor: ['rgba(255,99,132,1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
   </body>
 </html>
