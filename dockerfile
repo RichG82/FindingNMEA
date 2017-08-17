@@ -18,15 +18,21 @@ FROM linode/lamp
 #RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY ./dockerinit.sh ./dockerinit.sh
-COPY ./etc/apache2/sites-enabled/nmea.www.conf /etc/apache2/sites-available
-COPY ./etc/apache2/sites-enabled/nmea.www.conf /etc/apache2/sites-enabled
-COPY ./etc/mysql/my.cnf /etc/mysql
+
+COPY ./bin/etc /etc
+#COPY ./etc/apache2/sites-enabled/nmea.www.conf /etc/apache2/sites-available
+#COPY ./etc/apache2/sites-enabled/nmea.www.conf /etc/apache2/sites-enabled
+#COPY ./etc/mysql/my.cnf /etc/mysql
+
 
 # copy web files for the front end
-COPY ./bower_components /var/www/finding-nmea.local/public_html/bower_components
-COPY ./src/html /var/www/finding-nmea.local/public_html
-COPY ./src/css /var/www/finding-nmea.local/public_html/css
-COPY ./src/js /var/www/finding-nmea.local/public_html/js
+COPY ./bin/bower_components /var/www/finding-nmea.local/public_html/bower_components
+COPY ./bin/data.php /var/www/finding-nmea.local/public_html
+COPY ./bin/index.php /var/www/finding-nmea.local/public_html
+COPY ./bin/test.php /var/www/finding-nmea.local/public_html
+
+COPY ./bin/css /var/www/finding-nmea.local/public_html/css
+COPY ./bin/js /var/www/finding-nmea.local/public_html/js
 
 RUN apt-get update
 

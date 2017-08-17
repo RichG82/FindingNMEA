@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/RichG82/FindingNMEA/issues"
   },
-  "homepage": "https://github.com/RichG82/FindingNMEA#readme"
+  "homepage": "https://github.com/RichG82/FindingNMEA#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }

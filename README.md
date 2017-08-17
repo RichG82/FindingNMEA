@@ -6,14 +6,20 @@ I dont know markdown... so, sorry in advance.
 ### Source Docker Location
 https://hub.docker.com/r/linode/lamp/
 
-This was installed with a basic LAMP stack.  Apache is not yet configured.
+This was installed with a basic LAMP stack. 
 
 MySQL Password: Admin2015
 
 ### 1.  Clone the repository
 ```git clone https://github.com/RichG82/FindingNMEA.git finding-nmea```
+
+### 1a. Get  bower / npm packages
+``` npm install ```
+``` bower install ```
+
 ### 2.  Install Docker
 https://docs.docker.com/engine/installation/
+
 
 ### 3.  Create the Docker Image
 ```docker build -t nmea .```
