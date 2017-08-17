@@ -82,7 +82,7 @@
 <script>
 	TESTER = document.getElementById('chart-panel');
 	Plotly.plot( TESTER, [{
-	x: [1, "foo", 3, 4, 5],
+	x: [1, 3, 3, 4, 5],
 	y: [1, 2, 4, 8, 16] }], {
 	margin: { t: 0 } } );
 </script>
