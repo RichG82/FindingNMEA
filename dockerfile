@@ -4,16 +4,14 @@ FROM linode/lamp
 #---------------------------------------------------------------
 
 ## Step 1: Create the image
-##   docker build -t nmea .
+##   docker build -t nmea . 
 
 ## Step 2: Start the container
-##   docker run -p 8080:80 -t -i nmea /bin/bash
+##   docker run -p 80:80 -p 3306:3306 -t -i nmea /bin/bash
 
 ## connect to mysql
 ## mysql -u root -pAdmin2015
 
-# to be able to ping your container
-# docker run --rm -ti --privileged --network=none --pid=host justincormack/nsenter1 bin/sh -c "iptables -A FORWARD -j ACCEPT"
 #-------------------------------------------------------------------
 #RUN apt-get install dmsetup && dmsetup mknodes
 
@@ -36,7 +34,7 @@ RUN apt-get update
 RUN apt-get install -y git
 
 # install Python 3 pip
-RUN apt-get install -y python3-pip
+##### RUN apt-get install -y python3-pip
 
 # install Python 2
 RUN apt-get install -y python
@@ -45,11 +43,11 @@ RUN apt-get install -y python-pip
 # install python dependencies
 RUN apt-get install -y python-mysqldb
 RUN pip install pynmea2
-RUN python3 -m pip install pynmea2
+#RUN python3 -m pip install pynmea2
 
 
 # install x11 apps, so we can VLC into our machine (at some point)
-RUN apt-get install -qqy x11-apps
+#RUN apt-get install -qqy x11-apps
 #ENV DISPLAY :0
 #CMD xeyes
 

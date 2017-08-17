@@ -77,13 +77,12 @@
     <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
     <script src="/bower_components/jquery/dist/jquery.slim.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/bower_components/chart.js/dist/Chart.bundle.min.js"></script>
     <script src="/bower_components/plotlyjs/plotly.js"></script>
 
 <script>
 	TESTER = document.getElementById('chart-panel');
 	Plotly.plot( TESTER, [{
-	x: [1, 2, 3, 4, 5],
+	x: [1, "foo", 3, 4, 5],
 	y: [1, 2, 4, 8, 16] }], {
 	margin: { t: 0 } } );
 </script>
