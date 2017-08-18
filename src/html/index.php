@@ -75,16 +75,42 @@
 </div>
 
     <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
-    <script src="/bower_components/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/plotlyjs/plotly.js"></script>
 
 <script>
-	TESTER = document.getElementById('chart-panel');
-	Plotly.plot( TESTER, [{
-	x: [1, 3, 3, 4, 5],
-	y: [1, 2, 4, 8, 16] }], {
-	margin: { t: 0 } } );
+    TESTER = document.getElementById('chart-panel');
+    graph_data = {};
+    graph_data.x = [];
+    graph_data.y = [];
+	// Plotly.plot( TESTER, [{
+	// x: [1, 3, 3, 4, 5],
+	// y: [1, 2, 4, 8, 16] }], {
+    // margin: { t: 0 } } );
+    
+
+$(document).ready(function(){
+
+    $.getJSON( "/data.php", function( data ) {
+        $.each(data, function(item){
+            var obj = data[item];
+            //console.log(obj);
+            graph_data.x.push(obj.record_time);
+            graph_data.y.push(obj.altitude);
+        })
+
+        Plotly.plot(TESTER, [{
+            x: graph_data.x,
+            y: graph_data.y
+        }], {
+            margin: {t:0}
+        })
+        //console.log(data);
+    });
+});
+
+
 </script>
 
   </body>
