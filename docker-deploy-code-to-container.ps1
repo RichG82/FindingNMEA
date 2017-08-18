@@ -10,7 +10,9 @@ docker cp ./etc/apache2/sites-enabled/nmea.www.conf $container_id`:/etc/apache2/
 docker cp ./etc/mysql/my.cnf $container_id`:/etc/mysql
 
 docker cp ./bower_components $container_id`:/var/www/finding-nmea.local/public_html/bower_components
-docker cp ./src/html $container_id`:/var/www/finding-nmea.local/public_html
+docker cp ./src/html/data.php $container_id`:/var/www/finding-nmea.local/public_html
+docker cp ./src/html/index.php $container_id`:/var/www/finding-nmea.local/public_html
+docker cp ./src/html/test.php $container_id`:/var/www/finding-nmea.local/public_html
 #docker exec 72b6b1485f2c "mv /var/www/finding-nmea.local/public_html/html/*.* /var/www/finding-nmea.local/public_html"
 
 
