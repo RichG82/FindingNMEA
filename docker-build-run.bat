@@ -1,5 +1,5 @@
 @ECHO OFF
 
-call build.bat
+REM call build.bat
 call docker-build.bat
 call docker-run.bat

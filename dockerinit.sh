@@ -18,6 +18,7 @@ git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 
 service apache2 start
 service mysql start 
+service ssh start
 
 echo "***********************************"
 echo "          Services Started"

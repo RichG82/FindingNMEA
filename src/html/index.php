@@ -92,7 +92,7 @@
 
 $(document).ready(function(){
 
-    $.getJSON( "/data.php", function( data ) {
+    $.getJSON( "/data_gga.php", function( data ) {
         $.each(data, function(item){
             var obj = data[item];
             //console.log(obj);

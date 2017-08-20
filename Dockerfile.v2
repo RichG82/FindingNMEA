@@ -1,0 +1,13 @@
+FROM rgrenwick/lamp-baseline
+
+
+
+EXPOSE 22
+
+# expose MySQL Port
+EXPOSE 3306
+
+# expose Apache port
+EXPOSE 80
+
+ENTRYPOINT /dockerinit.sh && /bin/bash
