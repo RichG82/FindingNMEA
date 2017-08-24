@@ -1,4 +1,4 @@
-FROM rgrenwick/lamp-baseline.2
+FROM rgrenwick/raspberry-docker
 
 # https://hub.docker.com/r/linode/lamp/
 # MySQL Password: Admin2015
@@ -18,6 +18,7 @@ FROM rgrenwick/lamp-baseline.2
 #RUN service apache2 start
 #RUN service mysql start
 #RUN service ssh start
+
 
 COPY ./dockerinit.sh ./dockerinit.sh
 COPY ./bin/etc /etc

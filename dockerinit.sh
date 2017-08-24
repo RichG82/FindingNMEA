@@ -5,14 +5,16 @@ mkdir /var/www/finding-nmea.local/log
 mkdir /var/www/finding-nmea.local/public_html
 
 # remove example files from the apache config
-rm /etc/apache2/sites-available/example.com.conf
-rm /etc/apache2/sites-enabled/example.com.conf
+#rm /etc/apache2/sites-available/example.com.conf
+#rm /etc/apache2/sites-enabled/example.com.conf
+rm /etc/apache2/sites-enabled/000-default.conf
 
 echo "***********************************"
 echo "       Cloning Repository          "
 echo "***********************************"
 
 
+rm /finding-nmea -R
 git clone https://github.com/RichG82/FindingNMEA.git finding-nmea
 
 

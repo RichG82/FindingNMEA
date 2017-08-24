@@ -5,5 +5,7 @@
  GRANT ALL PRIVILEGES on readings.* to root@'%';
  GRANT ALL PRIVILEGES on readings.* to 'feeder'@'%';
  SET PASSWORD FOR root@'%' = PASSWORD('Admin2015');
-
+ SET PASSWORD FOR root@'localhost' = PASSWORD('Admin2015');
+ SET PASSWORD FOR root@'127.0.0.1' = PASSWORD('Admin2015');
+# select user,host,password from mysql.user;
  FLUSH PRIVILEGES;
