@@ -23,6 +23,22 @@ FROM rgrenwick/raspberry-docker
 COPY ./dockerinit.sh ./dockerinit.sh
 COPY ./bin/etc /etc
 
+COPY ./bower_components /var/www/finding-nmea.local/public_html/bower_components
+COPY ./src/css /var/www/finding-nmea.local/public_html/css
+COPY ./src/js /var/www/finding-nmea.local/public_html/js
+
+COPY ./src/html/data_gga.php /var/www/finding-nmea.local/public_html
+COPY ./src/html/index.php /var/www/finding-nmea.local/public_html
+COPY ./src/html/test.php /var/www/finding-nmea.local/public_html
+
+#docker cp ./bower_components $container_id`:/var/www/finding-nmea.local/public_html/bower_components
+#docker cp ./src/html/data_gga.php $container_id`:/var/www/finding-nmea.local/public_html
+#docker cp ./src/html/index.php $container_id`:/var/www/finding-nmea.local/public_html
+#docker cp ./src/html/test.php $container_id`:/var/www/finding-nmea.local/public_html
+
+
+
+
 # expose SSH
 EXPOSE 22
 
