@@ -42,32 +42,26 @@ CREATE TABLE vtg_data (
 );
 
 
+drop table if exists sentence_metadata;
 
-
-
-drop table if exists sentence_metadata
-
-CREATE TABLE `sentence_metadata` (
-  `id` int(11) NOT NULL,
-  `sentence_type` varchar(45) DEFAULT NULL,
-  `source_column` varchar(45) DEFAULT NULL,
-  `data_column` varchar(45) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE sentence_metadata (
+  id int(11) NOT NULL,
+  sentence_type varchar(45) DEFAULT NULL,
+  source_column varchar(45) DEFAULT NULL,
+  data_column varchar(45) DEFAULT NULL,
+  name varchar(45) DEFAULT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+drop table if exists nmea_data;
 
-
-drop table if exists nmea_data
-
-
-CREATE TABLE `nmea_data` (
-  `timestamp` datetime NOT NULL,
-  `sentence_type` varchar(45) DEFAULT NULL,
-  `column_01` varchar(100) DEFAULT NULL,
-  `column_02` varchar(100) DEFAULT NULL,
-  `column_03` varchar(100) DEFAULT NULL,
+CREATE TABLE nmea_data (
+  timestamp datetime NOT NULL,
+  sentence_type varchar(45) DEFAULT NULL,
+  column_01 varchar(100) DEFAULT NULL,
+  column_02 varchar(100) DEFAULT NULL,
+  column_03 varchar(100) DEFAULT NULL,
   `column_04` varchar(100) DEFAULT NULL,
   `column_05` varchar(100) DEFAULT NULL,
   `column_06` varchar(100) DEFAULT NULL,
